@@ -21,10 +21,20 @@ foreach($clients as $client){
     echo"<li>" . $client['nom_client'] . "</li>";
 }
 
-$contenu="
 
 
-";
+$contenu='<form method="POST" action="ajouter.php">
+<h2>créer client</h2>
+<input type="text" name="nom" size="20" value=""  placeholder="nom"><br>
+<input type="text" name="numeroDeVoie" size="20" value=""  placeholder="numéro de voie"><br>
+<input type="text" name="voie" size="20" value=""  placeholder="voie"><br>
+<input type="text" name="ville" size="20" value=""  placeholder="ville"><br>
+<input type="text" name="codePostal" size="20" value=""  placeholder="code postal"><br>
+<input type="submit" value="ajouter un nouveau client" name="envoyer">
+</form>
+
+
+';
 
 require 'partials/enTete.php';
 require 'partials/contenu.php';

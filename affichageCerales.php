@@ -17,17 +17,20 @@ $statement->execute();
 
 $clients=$statement->fetchAll(PDO::FETCH_ASSOC);
 
+
+$contenu="affichage de la table client";
 foreach($clients as $client){
-    echo"<li>" . $client['numéro_client'] . "</li>";
-    echo"<li>" . $client['numéro_de_rue_client'] . "</li>";
-    echo"<li>" . $client['nom_rue'] . "</li>";
-    echo"<li>" . $client['ville_client'] . "</li>";
-    echo"<li>" . $client['code_postal_client'] . "</li>";
+    $contenu.="<li>" . $client['numéro_client'] . "</li>";
+    $contenu.="<li>" . $client['nom_client'] . "</li>";
+    $contenu.="<li>" . $client['numéro_de_rue_client'] . "</li>";
+    $contenu.="<li>" . $client['nom_rue'] . "</li>";
+    $contenu.="<li>" . $client['ville_client'] . "</li>";
+    $contenu.="<li>" . $client['code_postal_client'] . "</li>";
 }
 
 
 
-$contenu="page principale, où seront affichées les colonnes de la base de données ";
+//$contenu="affichage de la table client". "<li>" . $client['numéro_client'] . "</li>";
 
 require 'partials/enTete.php';
 require 'partials/contenu.php';
