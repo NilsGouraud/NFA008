@@ -1,3 +1,3 @@
 <main>
-        affichage
-    </main>
+<?=$contenu;?>
+</main>

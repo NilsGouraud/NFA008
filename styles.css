@@ -15,6 +15,13 @@ header{
     position:fixed;
     top:0;
 }
+main{
+    display: block;
+    position: absolute;
+    top:47px;
+    width:100%;
+    background-color: red;
+}
 h1{
     font-size:18px;
     height: 22px;
