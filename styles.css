@@ -12,13 +12,11 @@ header{
     background-color: rgb(8, 9, 24);
     color:white;
 
-    position:fixed;
+    /*position:fixed;/**/
     top:0;
 }
 main{
     display: block;
-    position: absolute;
-    top:47px;
     width:100%;
     background-color: red;
 }
