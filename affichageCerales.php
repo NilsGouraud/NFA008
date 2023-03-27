@@ -26,6 +26,7 @@ foreach($clients as $client){
     $contenu.="<li>" . $client['nom_rue'] . "</li>";
     $contenu.="<li>" . $client['ville_client'] . "</li>";
     $contenu.="<li>" . $client['code_postal_client'] . "</li>";
+    $contenu.="<br>";
 }
 
 
