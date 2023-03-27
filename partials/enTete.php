@@ -11,7 +11,8 @@
     <header>
         <h1>Projet base de données NFA008</h1>
     <nav>
-        <a href="affichageCerales.php">page principale</a>
+        <a href="affichageCerales.php">
+            page principale</a>
         <a href="creationClient.php">ajouter un client</a>
         <a href="reception.php">réceptionner un lot de  céréales</a>
     </nav>
