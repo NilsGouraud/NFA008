@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>Projet base de données</header>
+    <header>
+        <h1>Projet base de données NFA008</h1>
     <nav>
-        <a href="affichageCerales.html">page principale</a>
-        <a href="creationClient.html">ajouter un client</a>
-        <a href="reception.html">réceptionner un lot de  céréales</a>
+        <a href="affichageCerales.php">page principale</a>
+        <a href="creationClient.php">ajouter un client</a>
+        <a href="reception.php">réceptionner un lot de  céréales</a>
     </nav>
+    </header>
 
     
