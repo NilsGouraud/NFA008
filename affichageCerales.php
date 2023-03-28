@@ -18,15 +18,15 @@ $statement->execute();
 $clients=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 
-$contenu="affichage de la table client";
+$contenu="<h2>affichage de la table client</h2>";
 foreach($clients as $client){
-    $contenu.="<li>" . $client['numéro_client'] . "</li>";
+    $contenu.="<div><li>client numéro " . $client['numéro_client'] . "</li>";
     $contenu.="<li>" . $client['nom_client'] . "</li>";
     $contenu.="<li>" . $client['numéro_de_rue_client'] . "</li>";
     $contenu.="<li>" . $client['nom_rue'] . "</li>";
     $contenu.="<li>" . $client['ville_client'] . "</li>";
     $contenu.="<li>" . $client['code_postal_client'] . "</li>";
-    $contenu.="<br>";
+    $contenu.="</div>";
 }
 
 
