@@ -1,0 +1,9 @@
+input[type=submit]{
+    border-radius: 5px;
+    background: linear-gradient(180deg,white,rgb(114, 114, 114));
+    border: 1px solid black;
+}
+form{
+    display: block;
+    text-align: center;
+}

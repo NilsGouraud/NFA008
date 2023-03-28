@@ -25,11 +25,13 @@ foreach($clients as $client){
 
 $contenu='<form method="POST" action="ajouter.php">
 <h2>créer client</h2>
-<input type="text" name="nom_client" size="20" value=""  placeholder="nom"><br>
-<input type="text" name="numéro_de_rue_client" size="20" value=""  placeholder="numéro de voie"><br>
-<input type="text" name="nom_rue" size="20" value=""  placeholder="voie"><br>
-<input type="text" name="ville_client" size="20" value=""  placeholder="ville"><br>
-<input type="text" name="code_postal_client" size="20" value=""  placeholder="code postal"><br>
+* : champ obligatoire
+<br>
+<input type="text" required name="nom_client" size="20" value=""  placeholder="nom*"><br>
+<input type="text"  name="numéro_de_rue_client" size="20" value=""  placeholder="numéro de voie"><br>
+<input type="text" required  name="nom_rue" size="20" value=""  placeholder="voie/lieu-dit*"><br>
+<input type="text" required  name="ville_client" size="20" value=""  placeholder="ville*"><br>
+<input type="text" required  name="code_postal_client" size="20" value=""  placeholder="code postal*"><br>
 <input type="submit" value="ajouter un nouveau client" name="envoyer">
 </form>
 
