@@ -21,6 +21,7 @@ $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset
 $connexion=new PDO($dsn);
 
 
+
 $requete=$connexion->prepare('INSERT INTO '.$client.' VALUES('.$values.')');
 try{
   $requete->execute(); 
