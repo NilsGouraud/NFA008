@@ -23,17 +23,31 @@ foreach($clients as $client){
 
 
 
-$contenu='<form method="POST" action="ajouter.php">
-<h2>créer client</h2>
+$contenu='<form method="POST" action="ajouterClient.php">
+<fieldset><legend>créer client</legend>
 * : champ obligatoire
 <br>
 <input type="text" required name="nom_client" size="20" value=""  placeholder="nom*"><br>
 <input type="text"  name="numéro_de_rue_client" size="20" value=""  placeholder="numéro de voie"><br>
-<input type="text" required  name="nom_rue" size="20" value=""  placeholder="voie/lieu-dit*"><br>
+<input type="text" required  name="adresse_fournisseur" size="20" value=""  placeholder="voie/lieu-dit*"><br>
 <input type="text" required  name="ville_client" size="20" value=""  placeholder="ville*"><br>
 <input type="text" required  name="code_postal_client" size="20" value=""  placeholder="code postal*"><br>
 <input type="submit" value="ajouter un nouveau client" name="envoyer">
+</fieldset>
 </form>
+
+<form method="POST" action="ajouterFournisseur.php">
+<fieldset><legend>créer fournisseur</legend>* : champ obligatoire
+<br>
+<input type="text" required name="nom_fournisseur" size="20" value=""  placeholder="nom*"><br>
+<input type="text"  name="numéro_de_rue_fournisseur" size="20" value=""  placeholder="numéro de voie"><br>
+<input type="text" required  name="addresse_fournisseur" size="20" value=""  placeholder="voie/lieu-dit*"><br>
+<input type="text" required  name="ville_fournisseur" size="20" value=""  placeholder="ville*"><br>
+<input type="text" required  name="code_postal_fournisseur" size="20" value=""  placeholder="code postal*"><br>
+<input type="submit" value="ajouter un nouveau fournisseur" name="envoyer">
+</fieldset>
+</form>
+
 
 
 ';

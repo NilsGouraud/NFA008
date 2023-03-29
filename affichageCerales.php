@@ -14,8 +14,11 @@ afficher($pdo);
 
 $statement=$pdo->prepare("select * from client");
 $statement->execute();
-
 $clients=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+$statement=$pdo->prepare("select * from fournisseur");
+$statement->execute();
+$fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 $contenu="<h2>affichage de la table client</h2>";
@@ -26,6 +29,16 @@ foreach($clients as $client){
     $contenu.="<li>" . $client['nom_rue'] . "</li>";
     $contenu.="<li>" . $client['ville_client'] . "</li>";
     $contenu.="<li>" . $client['code_postal_client'] . "</li>";
+    $contenu.="</div>";
+}
+$contenu.="<h2>affichage de la table fournisseur</h2>";
+foreach($fournisseurs as $fournisseur){
+    $contenu.="<div><li>fournisseur numéro " . $fournisseur['numéro_fournisseur'] . "</li>";
+    $contenu.="<li>" . $fournisseur['nom_fournisseur'] . "</li>";
+    $contenu.="<li>" . $fournisseur['numéro_de_rue_fournisseur'] . "</li>";
+    $contenu.="<li>" . $fournisseur['nom_rue'] . "</li>";
+    $contenu.="<li>" . $fournisseur['ville_fournisseur'] . "</li>";
+    $contenu.="<li>" . $fournisseur['code_postal_fournisseur'] . "</li>";
     $contenu.="</div>";
 }
 

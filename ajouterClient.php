@@ -3,6 +3,10 @@
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 
 print_r($_POST);
+if($_POST['numéro_de_rue_client']==""){
+  $_POST['numéro_de_rue_client']=0;
+}
+
 $id=0;
 $nom_client=$_POST['nom_client'];
 $numéro_de_rue_client=$_POST['numéro_de_rue_client'];
@@ -18,19 +22,25 @@ function afficher($string){
   var_dump($string);
   echo '</pre>';
 }
-afficher($dsn);
-afficher($values);
-
 $pdo=new PDO($dsn);
 $client='client(numéro_client, nom_client, numéro_de_rue_client,nom_rue, ville_client, code_postal_client)';
-$statement=$pdo->prepare('INSERT INTO '.$client.' VALUES('.$values.')');
-//$statement=$pdo->prepare('INSERT INTO client(numéro_client, nom_client, numéro_de_rue_client,nom_rue, ville_client, code_postal_client) VALUES(0,$nom_client,$numéro_de_rue_client,$nom_rue,$ville_client,$code_postal_client)');
-afficher($statement);
 
+
+$requete='INSERT INTO '.$client.' VALUES('.$values.')';
+$statement=$pdo->prepare('INSERT INTO '.$client.' VALUES('.$values.')');
 $statement->execute();
 
-// on insère les informations du formulaire dans la table
-
+$statement=$pdo->prepare('SELECT count(*) FROM client as numero');
+$statement->execute();
+$resultat=$statement->fetchAll();
+  $contenu="<h1>Vous avez ajouté le client suivant :</h1>";
+  $contenu.="<div><li>client numéro " .$resultat[0][0] . "</li>";
+    $contenu.="<li>" . $nom_client . "</li>";
+    $contenu.="<li>" . $numéro_de_rue_client . "</li>";
+    $contenu.="<li>" . $nom_rue . "</li>";
+    $contenu.="<li>" . $ville_client . "</li>";
+    $contenu.="<li>" . $code_postal_client . "</li>";
+    $contenu.="</div>";
 
 /*
 $hote='localhost';  $utilisateur='root';  $password='root'; 
@@ -49,6 +59,10 @@ $row[3].'</td>';
 echo '</table>\n';
 mysqli_close($connexion);
 */
+require 'partials/enTete.php';
+require 'partials/contenu.php';
+require 'partials/finDePage.php';
+
 ?>
 
 
