@@ -1,5 +1,5 @@
 <?php
-//displaying errors
+//affichage d'éventuelles erreurs
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 
 //si le fournisseur se trouve dans un lieu-dit, le numéro de rue par défaut sera 0
@@ -7,7 +7,10 @@ if($_POST['numéro_de_rue_fournisseur']==""){
   $_POST['numéro_de_rue_fournisseur']=0;
 }
 
+//le numéro du fournisseur (id), qui sera incrémenté automatiquement 
 $id=0;
+
+//récupération des données du formulaire
 $nom_fournisseur=$_POST['nom_fournisseur'];
 $numéro_de_rue_fournisseur=$_POST['numéro_de_rue_fournisseur'];
 $adresse_fournisseur=$_POST['adresse_fournisseur'];
@@ -16,6 +19,7 @@ $code_postal_fournisseur=$_POST['code_postal_fournisseur'];
 $values="$id,'$nom_fournisseur','$numéro_de_rue_fournisseur','$adresse_fournisseur','$ville_fournisseur','$code_postal_fournisseur'";
 $fournisseur='fournisseur(numéro_fournisseur, nom_fournisseur, numéro_de_rue_fournisseur,adresse_fournisseur, ville_fournisseur, code_postal_fournisseur)';
 
+//données de connexion
 $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset=utf8mb4";
 
 $connexion=new PDO($dsn);

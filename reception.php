@@ -1,5 +1,5 @@
 <?php
-//displaying errors
+//affichage d'éventuelles erreurs
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 
 $contenu="<h2>réceptionner un lot de céréales</h2>";

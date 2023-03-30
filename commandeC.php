@@ -1,16 +1,11 @@
 <?php
-//displaying errors
+//affichage d'éventuelles erreurs
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
-function afficher($string){
-    echo '<pre>';
-    var_dump($string);
-    echo '</pre>';
-}
-$dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset=utf8mb4";
-afficher($dsn);
-$pdo=new PDO($dsn);
 
-afficher($pdo);
+//données de connexion 
+$dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset=utf8mb4";
+//connexion
+$pdo=new PDO($dsn);
 
 //on récupère les clients à livrer
 $statement=$pdo->prepare("select * from client");
@@ -24,6 +19,8 @@ $flocons=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 $recevoirUneCommandePourDesFlocons="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
+
+//début du formulaire
 $contenu="<h2>recevoir une commande client</h2>";
 $contenu.='<form method="POST" action="ajouterCommandeC.php">
 
@@ -54,7 +51,6 @@ quantité à livrer : <input required type="text" name="quantite" placeholder="x
 
 
 
-//$contenu="affichage de la table client". "<li>" . $client['numéro_client'] . "</li>";
 
 require 'partials/enTete.php';
 require 'partials/contenu.php';

@@ -1,30 +1,28 @@
 <?php
-//displaying errors
+//affichage d'éventuelles erreurs
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
-function afficher($string){
-    echo '<pre>';
-    var_dump($string);
-    echo '</pre>';
-}
+
+//données de connexion
 $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset=utf8mb4";
-afficher($dsn);
+
 $pdo=new PDO($dsn);
 
-afficher($pdo);
-
+//récupération de la table client
 $statement=$pdo->prepare("select * from client");
 $statement->execute();
 $clients=$statement->fetchAll(PDO::FETCH_ASSOC);
-
+//récupération de la table fournisseur
 $statement=$pdo->prepare("select * from fournisseur");
 $statement->execute();
 $fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
-
+//récupération de la table commandeClient
 $statement=$pdo->prepare("select * from commandeClient");
 $statement->execute();
 $commandesClient=$statement->fetchAll(PDO::FETCH_ASSOC);
 
-$pagePrincipale="pageActuelle";
+$pagePrincipale="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
+
+
 $contenu="<h2>affichage de la table client</h2>";
 foreach($clients as $client){
     $contenu.="<div><li>client numéro " . $client['numéro_client'] . "</li>";
