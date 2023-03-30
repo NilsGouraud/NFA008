@@ -1,16 +1,11 @@
 <?php
 //displaying errors
 ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
-function afficher($string){
-    echo '<pre>';
-    var_dump($string);
-    echo '</pre>';
-}
-$dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset=utf8mb4";
-afficher($dsn);
-$pdo=new PDO($dsn);
 
-afficher($pdo);
+
+
+//données de connexion
+$dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset=utf8mb4";
 
 //on récupère les fournisseurs
 $statement=$pdo->prepare("select * from fournisseur");
@@ -23,7 +18,10 @@ $statement->execute();
 $cereales=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 
-$recevoirUneCommandePourDesFlocons="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
+$passerUneCommandePourDesCereale="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
+
+
+//début du formulaire
 $contenu="<h2>passer une commande à un fournisseur</h2>";
 $contenu.='<form method="POST" action="ajouterCommandeF.php">
 
@@ -37,7 +35,7 @@ $contenu.='</select>
 
 quel type de céréale avez-vous commandé?
 <select name="cereale">';
-foreach($flocons as $flocon){
+foreach($cereales as $cereale){
     $contenu.=' <option value="'.$cereale['variété_matière_première'].'">'.$cereale['variété_matière_première'].'</option>';
 }
 $contenu.='</select>
