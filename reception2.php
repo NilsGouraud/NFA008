@@ -5,31 +5,18 @@ ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_report
 //données de connexion
 $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset=utf8mb4";
 //connexion
-$pdo=new PDO($dsn);
+$connexion=new PDO($dsn);
 
-//on récupère les fournisseurs
-$statement=$pdo->prepare("select * from fournisseur");
-$statement->execute();
-$fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
+$typeCereale=$_POST['cereale'];
 
-//on récupère les céréales dont peut avoir besoin pour produire les flocons
-$statement=$pdo->prepare("select * from matière_première");
-$statement->execute();
-$cereales=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+$silos=$connexion->prepare('SELECT * FROM stockageMatièresPremières WHERE variété_matière_première='.$typeCereale);
 
 
 $contenu="<h2>réceptionner un lot de céréales</h2>";
 $receptionnerUnLotDeCereales="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
-$contenu.='<form method="POST" action="reception2.php">
+$contenu.='<form method="POST" action="reception3.php">
 
-
-quel type de céréale aviez-vous commandé?
-<select name="cereale">';
-foreach($cereales as $cereale){
-    $contenu.=' <option value="'.$cereale['variété_matière_première'].'">'.$cereale['variété_matière_première'].'</option>';
-}
-$contenu.='</select>
-<br>
 
 Avec quel silo allez-vous réceptionner les céréales?
 <select name="silo">';

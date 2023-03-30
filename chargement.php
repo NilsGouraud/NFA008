@@ -7,38 +7,51 @@ $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset
 //connexion
 $pdo=new PDO($dsn);
 
-
-$statement=$pdo->prepare("select * from client");
-$statement->execute();
-$clients=$statement->fetchAll(PDO::FETCH_ASSOC);
-
+//on récupère les fournisseurs
 $statement=$pdo->prepare("select * from fournisseur");
 $statement->execute();
 $fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
 
+//on récupère les flocons
+$statement=$pdo->prepare("select * from produit_fini");
+$statement->execute();
+$cereales=$statement->fetchAll(PDO::FETCH_ASSOC);
+
 $ChargerUnLotDeFlocons="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 $contenu="<h2>charger un lot de flocons</h2>";
-foreach($clients as $client){
-    $contenu.="<div><li>client numéro " . $client['numéro_client'] . "</li>";
-    $contenu.="<li>" . $client['nom_client'] . "</li>";
-    $contenu.="<li>" . $client['numéro_de_rue_client'] . "</li>";
-    $contenu.="<li>" . $client['ville_client'] . "</li>";
-    $contenu.="<li>" . $client['code_postal_client'] . "</li>";
-    $contenu.="</div>";
+
+
+
+$contenu.='<form method="POST" action="validerChargement.php">
+
+
+quel type de flocon devez-vous charger?
+<select name="flocon">';
+foreach($cereales as $flocon){
+    $contenu.=' <option value="'.$flocon['libellé_produit_fini'].'">'.$flocon['libellé_produit_fini'].'</option>';
 }
-$contenu.="<h2>affichage de la table fournisseur</h2>";
-foreach($fournisseurs as $fournisseur){
-    $contenu.="<div><li>fournisseur numéro " . $fournisseur['numéro_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['nom_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['numéro_de_rue_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['ville_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['code_postal_fournisseur'] . "</li>";
-    $contenu.="</div>";
+$contenu.='</select>
+<br>
+
+Depuis quel silo allez-vous effectuer le chargement?
+<select name="silo">';
+foreach($silos as $silo){
+    $contenu.=' <option value="'.$silo['numéro_silo'].'">'.$silo['numéro_silo'].'</option>';
 }
+$contenu.='</select>
+<br>
+
+quantité à charger : <input required type="text" name="quantite" placeholder="xx">tonnes
+<br>
+<input type="submit" value="valider le chargement" name="envoyer">
+</form>
+';
 
 
 
-//$contenu="affichage de la table client". "<li>" . $client['numéro_client'] . "</li>";
+
+
+
 
 require 'partials/enTete.php';
 require 'partials/contenu.php';
