@@ -12,39 +12,49 @@ $pdo=new PDO($dsn);
 
 afficher($pdo);
 
-$statement=$pdo->prepare("select * from client");
-$statement->execute();
-$clients=$statement->fetchAll(PDO::FETCH_ASSOC);
-
+//on récupère les fournisseurs
 $statement=$pdo->prepare("select * from fournisseur");
 $statement->execute();
 $fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
 
-$passerUneCommandePourDesCereales="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
+//on récupère les céréales dont peut avoir besoin pour produire les flocons
+$statement=$pdo->prepare("select * from matière_première");
+$statement->execute();
+$cereales=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+$recevoirUneCommandePourDesFlocons="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 $contenu="<h2>passer une commande à un fournisseur</h2>";
-foreach($clients as $client){
-    $contenu.="<div><li>client numéro " . $client['numéro_client'] . "</li>";
-    $contenu.="<li>" . $client['nom_client'] . "</li>";
-    $contenu.="<li>" . $client['numéro_de_rue_client'] . "</li>";
-    $contenu.="<li>" . $client['nom_rue'] . "</li>";
-    $contenu.="<li>" . $client['ville_client'] . "</li>";
-    $contenu.="<li>" . $client['code_postal_client'] . "</li>";
-    $contenu.="</div>";
-}
-$contenu.="<h2>affichage de la table fournisseur</h2>";
+$contenu.='<form method="POST" action="ajouterCommandeF.php">
+
+quel fournisseur avez-vous contacté?
+<select name="fournisseur">';
 foreach($fournisseurs as $fournisseur){
-    $contenu.="<div><li>fournisseur numéro " . $fournisseur['numéro_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['nom_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['numéro_de_rue_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['nom_rue'] . "</li>";
-    $contenu.="<li>" . $fournisseur['ville_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['code_postal_fournisseur'] . "</li>";
-    $contenu.="</div>";
+    $contenu.=' <option value="'.$fournisseur['numéro_fournisseur'].'">'.$fournisseur['numéro_fournisseur'].'</option>';
 }
+$contenu.='</select>
+<br>
+
+quel type de céréale avez-vous commandé?
+<select name="cereale">';
+foreach($flocons as $flocon){
+    $contenu.=' <option value="'.$cereale['variété_matière_première'].'">'.$cereale['variété_matière_première'].'</option>';
+}
+$contenu.='</select>
+<br>
+
+quantité commandée : <input required type="text" name="quantite" placeholder="xx">tonnes
+<br>
+<input type="submit" value="enregistrez votre commande" name="envoyer">
+</form>
+';
 
 
 
-//$contenu="affichage de la table client". "<li>" . $client['numéro_client'] . "</li>";
+
+
+
+//$contenu="affichage de la table fournisseur". "<li>" . $fournisseur['numéro_fournisseur'] . "</li>";
 
 require 'partials/enTete.php';
 require 'partials/contenu.php';
