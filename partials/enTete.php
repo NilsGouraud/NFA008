@@ -12,7 +12,7 @@
     <header>
         <h1>Projet base de données NFA008</h1>
     <nav>
-        <a class="<?=$pagePrincipale?>" href="affichageCerales.php">
+        <a class="<?=$pagePrincipale?>" href="pagePrincipale.php">
             page principale</a>
         <a class="<?=$ajouterUnClient?>" href="creationClient.php">ajouter un client/fournisseur</a>
         <a class="<?=$passerUneCommandePourDesCereales?>" href="commandeF.php">passer une commande pour des céréales</a>

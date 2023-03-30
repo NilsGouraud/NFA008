@@ -12,35 +12,45 @@ $pdo=new PDO($dsn);
 
 afficher($pdo);
 
+//on récupère les clients à livrer
 $statement=$pdo->prepare("select * from client");
 $statement->execute();
 $clients=$statement->fetchAll(PDO::FETCH_ASSOC);
 
-$statement=$pdo->prepare("select * from fournisseur");
+//on récupère les flocons qui seront livrés
+$statement=$pdo->prepare("select * from produit_fini");
 $statement->execute();
-$fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
+$flocons=$statement->fetchAll(PDO::FETCH_ASSOC);
+
 
 $recevoirUneCommandePourDesFlocons="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 $contenu="<h2>recevoir une commande client</h2>";
+$contenu.='<form method="POST" action="ajouterCommandeC.php">
+
+quel client comptez-vous livrer?
+<select name="client">';
 foreach($clients as $client){
-    $contenu.="<div><li>client numéro " . $client['numéro_client'] . "</li>";
-    $contenu.="<li>" . $client['nom_client'] . "</li>";
-    $contenu.="<li>" . $client['numéro_de_rue_client'] . "</li>";
-    $contenu.="<li>" . $client['nom_rue'] . "</li>";
-    $contenu.="<li>" . $client['ville_client'] . "</li>";
-    $contenu.="<li>" . $client['code_postal_client'] . "</li>";
-    $contenu.="</div>";
+    $contenu.=' <option value="'.$client['numéro_client'].'">'.$client['numéro_client'].'</option>';
 }
-$contenu.="<h2>affichage de la table fournisseur</h2>";
-foreach($fournisseurs as $fournisseur){
-    $contenu.="<div><li>fournisseur numéro " . $fournisseur['numéro_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['nom_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['numéro_de_rue_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['nom_rue'] . "</li>";
-    $contenu.="<li>" . $fournisseur['ville_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['code_postal_fournisseur'] . "</li>";
-    $contenu.="</div>";
+$contenu.='</select>
+<br>
+
+quel type de flocon allez-vous livrer?
+<select name="flocon">';
+foreach($flocons as $flocon){
+    $contenu.=' <option value="'.$flocon['libellé_produit_fini'].'">'.$flocon['libellé_produit_fini'].'</option>';
 }
+$contenu.='</select>
+<br>
+
+quantité à livrer : <input required type="text" name="quantite" placeholder="xx">tonnes
+<br>
+<input type="submit" value="valider la commande" name="envoyer">
+</form>
+';
+
+
+
 
 
 

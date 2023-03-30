@@ -20,6 +20,10 @@ $statement=$pdo->prepare("select * from fournisseur");
 $statement->execute();
 $fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
 
+$statement=$pdo->prepare("select * from commandeClient");
+$statement->execute();
+$commandesClient=$statement->fetchAll(PDO::FETCH_ASSOC);
+
 $pagePrincipale="pageActuelle";
 $contenu="<h2>affichage de la table client</h2>";
 foreach($clients as $client){
@@ -39,6 +43,16 @@ foreach($fournisseurs as $fournisseur){
     $contenu.="<li>" . $fournisseur['nom_rue'] . "</li>";
     $contenu.="<li>" . $fournisseur['ville_fournisseur'] . "</li>";
     $contenu.="<li>" . $fournisseur['code_postal_fournisseur'] . "</li>";
+    $contenu.="</div>";
+}
+
+$contenu.="<h2>affichage de la table commandeClient</h2>";
+foreach($commandesClient as $commandeClient){
+    $contenu.="<div><li>fournisseur numéro " . $commandeClient['numéro_commandeClient'] . "</li>";
+    $contenu.="<li>" . $commandeClient['date_commandeClient'] . "</li>";
+    $contenu.="<li>" . $commandeClient['numéro_client'] . "</li>";
+    $contenu.="<li>" . $commandeClient['libellé_produit_fini'] . "</li>";
+    $contenu.="<li>" . $commandeClient['quantité'] . "</li>";
     $contenu.="</div>";
 }
 
