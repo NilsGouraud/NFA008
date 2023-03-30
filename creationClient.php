@@ -13,9 +13,6 @@ $statement->execute();
 
 $clients=$statement->fetchAll(PDO::FETCH_ASSOC);
 
-foreach($clients as $client){
-    echo"<li>" . $client['nom_client'] . "</li>";
-}
 
 
 $ajouterUnClient="pageActuelle"; //l'onglet de la page sera affiché en surbrillance

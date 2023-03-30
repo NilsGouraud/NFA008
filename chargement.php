@@ -22,7 +22,6 @@ foreach($clients as $client){
     $contenu.="<div><li>client numéro " . $client['numéro_client'] . "</li>";
     $contenu.="<li>" . $client['nom_client'] . "</li>";
     $contenu.="<li>" . $client['numéro_de_rue_client'] . "</li>";
-    $contenu.="<li>" . $client['nom_rue'] . "</li>";
     $contenu.="<li>" . $client['ville_client'] . "</li>";
     $contenu.="<li>" . $client['code_postal_client'] . "</li>";
     $contenu.="</div>";
@@ -32,7 +31,6 @@ foreach($fournisseurs as $fournisseur){
     $contenu.="<div><li>fournisseur numéro " . $fournisseur['numéro_fournisseur'] . "</li>";
     $contenu.="<li>" . $fournisseur['nom_fournisseur'] . "</li>";
     $contenu.="<li>" . $fournisseur['numéro_de_rue_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['nom_rue'] . "</li>";
     $contenu.="<li>" . $fournisseur['ville_fournisseur'] . "</li>";
     $contenu.="<li>" . $fournisseur['code_postal_fournisseur'] . "</li>";
     $contenu.="</div>";

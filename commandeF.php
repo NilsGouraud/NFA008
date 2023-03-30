@@ -20,7 +20,6 @@ $cereales=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 $passerUneCommandePourDesCereale="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 
-
 //début du formulaire
 $contenu="<h2>passer une commande à un fournisseur</h2>";
 $contenu.='<form method="POST" action="ajouterCommandeF.php">

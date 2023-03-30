@@ -5,25 +5,28 @@ ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_report
 //données de connexion
 $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset=utf8mb4";
 
-$pdo=new PDO($dsn);
+$connexion=new PDO($dsn);
 
 //récupération de la table client
-$statement=$pdo->prepare("select * from client");
+$statement=$connexion->prepare("select * from client");
 $statement->execute();
 $clients=$statement->fetchAll(PDO::FETCH_ASSOC);
 //récupération de la table fournisseur
-$statement=$pdo->prepare("select * from fournisseur");
+$statement=$connexion->prepare("select * from fournisseur");
 $statement->execute();
 $fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
 //récupération de la table commandeClient
-$statement=$pdo->prepare("select * from commandeClient");
+$statement=$connexion->prepare("select * from commandeClient");
 $statement->execute();
 $commandesClient=$statement->fetchAll(PDO::FETCH_ASSOC);
-
+//récupération de la table commandeFournisseur
+$statement=$connexion->prepare("select * from commandeFournisseur");
+$statement->execute();
+$commandesFournisseur=$statement->fetchAll(PDO::FETCH_ASSOC);
 $pagePrincipale="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 
 
-$contenu="<h2>affichage de la table client</h2>";
+$contenu="<fieldset><legend>affichage de la table client</legend>";
 foreach($clients as $client){
     $contenu.="<div><li>client numéro " . $client['numéro_client'] . "</li>";
     $contenu.="<li>" . $client['nom_client'] . "</li>";
@@ -33,7 +36,8 @@ foreach($clients as $client){
     $contenu.="<li>" . $client['code_postal_client'] . "</li>";
     $contenu.="</div>";
 }
-$contenu.="<h2>affichage de la table fournisseur</h2>";
+$contenu.="</fieldset>";
+$contenu.="<fieldset><legend>affichage de la table fournisseur</legend>";
 foreach($fournisseurs as $fournisseur){
     $contenu.="<div><li>fournisseur numéro " . $fournisseur['numéro_fournisseur'] . "</li>";
     $contenu.="<li>" . $fournisseur['nom_fournisseur'] . "</li>";
@@ -43,20 +47,30 @@ foreach($fournisseurs as $fournisseur){
     $contenu.="<li>" . $fournisseur['code_postal_fournisseur'] . "</li>";
     $contenu.="</div>";
 }
+$contenu.="</fieldset>";
 
-$contenu.="<h2>affichage de la table commandeClient</h2>";
+$contenu.="<fieldset><legend>affichage de la table commandeClient</legend>";
 foreach($commandesClient as $commandeClient){
-    $contenu.="<div><li>fournisseur numéro " . $commandeClient['numéro_commandeClient'] . "</li>";
+    $contenu.="<div><li>commande numéro " . $commandeClient['numéro_commandeClient'] . "</li>";
     $contenu.="<li>" . $commandeClient['date_commandeClient'] . "</li>";
-    $contenu.="<li>" . $commandeClient['numéro_client'] . "</li>";
+    $contenu.="<li>client numéro " . $commandeClient['numéro_client'] . "</li>";
     $contenu.="<li>" . $commandeClient['libellé_produit_fini'] . "</li>";
     $contenu.="<li>" . $commandeClient['quantité'] . "</li>";
     $contenu.="</div>";
 }
+$contenu.="</fieldset>";
+$contenu.="<fieldset><legend>affichage de la table commandeFournisseur</legend>";
+foreach($commandesFournisseur as $commandeFournisseur){
+    $contenu.="<div><li>commande numéro " . $commandeFournisseur['numéro_commandeFournisseur'] . "</li>";
+    $contenu.="<li>" . $commandeFournisseur['date_commandeFournisseur'] . "</li>";
+    $contenu.="<li>fournisseur numéro " . $commandeFournisseur['numéro_fournisseur'] . "</li>";
+    $contenu.="<li>" . $commandeFournisseur['variété_matière_première'] . "</li>";
+    $contenu.="<li>" . $commandeFournisseur['quantité'] . "</li>";
+    $contenu.="</div>";
+}
+$contenu.="</fieldset>";
 
 
-
-//$contenu="affichage de la table client". "<li>" . $client['numéro_client'] . "</li>";
 
 require 'partials/enTete.php';
 require 'partials/contenu.php';
