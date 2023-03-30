@@ -12,10 +12,14 @@
     <header>
         <h1>Projet base de données NFA008</h1>
     <nav>
-        <a href="affichageCerales.php">
+        <a class="<?=$pagePrincipale?>" href="affichageCerales.php">
             page principale</a>
-        <a href="creationClient.php">ajouter un client</a>
-        <a href="reception.php">réceptionner un lot de  céréales</a>
+        <a class="<?=$ajouterUnClient?>" href="creationClient.php">ajouter un client/fournisseur</a>
+        <a class="<?=$passerUneCommandePourDesCereales?>" href="commandeF.php">passer une commande pour des céréales</a>
+        <a class="<?=$recevoirUneCommandePourDesFlocons?>" href="commandeC.php">recevoir une commande pour des flocons</a>
+        <a class="<?=$receptionnerUnLotDeCereales?>" href="reception.php">réceptionner un lot de  céréales</a>
+        <a class="<?=$ChargerUnLotDeFlocons?>" href="envoi.php">charger un lot de flocons</a>
+        
     </nav>
     </header>
 

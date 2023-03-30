@@ -22,7 +22,7 @@ foreach($clients as $client){
 }
 
 
-
+$ajouterUnClient="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 $contenu='<form method="POST" action="ajouterClient.php">
 <fieldset><legend>créer client</legend>
 * : champ obligatoire

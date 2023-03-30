@@ -20,8 +20,8 @@ $statement=$pdo->prepare("select * from fournisseur");
 $statement->execute();
 $fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
 
-$pagePrincipale="pageActuelle";
-$contenu="<h2>affichage de la table client</h2>";
+$ChargerUnLotDeFlocons="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
+$contenu="<h2>charger un lot de flocons</h2>";
 foreach($clients as $client){
     $contenu.="<div><li>client numéro " . $client['numéro_client'] . "</li>";
     $contenu.="<li>" . $client['nom_client'] . "</li>";
