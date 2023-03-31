@@ -7,16 +7,17 @@ $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset
 //connexion
 $connexion=new PDO($dsn);
 
-$typeCereale=$_POST['cereale'];
+$cereale=$_POST['cereale'];
 
 
-$silos=$connexion->prepare('SELECT * FROM stockageMatièresPremières WHERE variété_matière_première='.$typeCereale);
+$silos=$connexion->prepare('SELECT * FROM stockageMatièresPremières WHERE variété_matière_première="'.$cereale.'"');
 $silos->execute();
 
 $contenu="<h2>réceptionner un lot de céréales</h2>";
 $receptionnerUnLotDeCereales="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
-$contenu.='<form method="POST" action="reception3.php">
+$contenu.='<form method="POST" action="receptionFinal.php">
 
+<input type="hidden" name="cereale" value="'.$cereale.'">
 
 Avec quel silo allez-vous réceptionner les céréales?
 <select name="silo">';

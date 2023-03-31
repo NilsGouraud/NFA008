@@ -83,7 +83,7 @@ $contenu.="<fieldset><legend>affichage du contenu des silos de matières premiè
 foreach($MPs as $MP){
     $contenu.="<div><li>silo numéro " . $MP['numéro_silo'] . "</li>";
     $contenu.="<li>" . $MP['variété_matière_première'] . "</li>";
-    $contenu.="<li>" . $MP['quantité_en_kg'] . "</li>";
+    $contenu.="<li>" . $MP['quantité'] . "t</li>";
     $contenu.="</div>";
 }
 $contenu.="</fieldset>";
@@ -91,7 +91,7 @@ $contenu.="<fieldset><legend>affichage du contenu des silos de produits finis</l
 foreach($PFs as $PF){
     $contenu.="<div><li>silo numéro " . $PF['numéro_silo'] . "</li>";
     $contenu.="<li>" . $PF['libellé_produit_fini'] . "</li>";
-    $contenu.="<li>" . $PF['quantité_en_kg_stockage2'] . "</li>";
+    $contenu.="<li>" . $PF['quantité'] . "t</li>";
     $contenu.="</div>";
 }
 $contenu.="</fieldset>";
