@@ -5,15 +5,10 @@ ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_report
 //données de connexion
 $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset=utf8mb4";
 //connexion
-$pdo=new PDO($dsn);
-
-//on récupère les fournisseurs
-$statement=$pdo->prepare("select * from fournisseur");
-$statement->execute();
-$fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
+$connexion=new PDO($dsn);
 
 //on récupère les céréales dont peut avoir besoin pour produire les flocons
-$statement=$pdo->prepare("select * from matière_première");
+$statement=$connexion->prepare("select * from matière_première");
 $statement->execute();
 $cereales=$statement->fetchAll(PDO::FETCH_ASSOC);
 
