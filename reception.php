@@ -31,17 +31,8 @@ foreach($cereales as $cereale){
 $contenu.='</select>
 <br>
 
-Avec quel silo allez-vous réceptionner les céréales?
-<select name="silo">';
-foreach($silos as $silo){
-    $contenu.=' <option value="'.$silo['numéro_silo'].'">'.$silo['numéro_silo'].'</option>';
-}
-$contenu.='</select>
-<br>
 
-quantité à réceptionner : <input required type="text" name="quantite" placeholder="xx">tonnes
-<br>
-<input type="submit" value="valider la réception" name="envoyer">
+<input type="submit" value="continuer" name="envoyer">
 </form>
 ';
 

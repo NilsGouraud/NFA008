@@ -23,6 +23,14 @@ $commandesClient=$statement->fetchAll(PDO::FETCH_ASSOC);
 $statement=$connexion->prepare("select * from commandeFournisseur");
 $statement->execute();
 $commandesFournisseur=$statement->fetchAll(PDO::FETCH_ASSOC);
+//récupération de la table stockageMatièresPremières
+$statement=$connexion->prepare("select * from stockageMatièresPremières");
+$statement->execute();
+$MPs=$statement->fetchAll(PDO::FETCH_ASSOC);
+//récupération de la table stockageProduitsFinis
+$statement=$connexion->prepare("select * from stockageProduitsFinis");
+$statement->execute();
+$PFs=$statement->fetchAll(PDO::FETCH_ASSOC);
 $pagePrincipale="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 
 
@@ -42,7 +50,7 @@ foreach($fournisseurs as $fournisseur){
     $contenu.="<div><li>fournisseur numéro " . $fournisseur['numéro_fournisseur'] . "</li>";
     $contenu.="<li>" . $fournisseur['nom_fournisseur'] . "</li>";
     $contenu.="<li>" . $fournisseur['numéro_de_rue_fournisseur'] . "</li>";
-    $contenu.="<li>" . $fournisseur['nom_rue'] . "</li>";
+    $contenu.="<li>" . $fournisseur['adresse_fournisseur'] . "</li>";
     $contenu.="<li>" . $fournisseur['ville_fournisseur'] . "</li>";
     $contenu.="<li>" . $fournisseur['code_postal_fournisseur'] . "</li>";
     $contenu.="</div>";
@@ -70,6 +78,23 @@ foreach($commandesFournisseur as $commandeFournisseur){
 }
 $contenu.="</fieldset>";
 
+$contenu.="</fieldset>";
+$contenu.="<fieldset><legend>affichage du contenu des silos de matières premières</legend>";
+foreach($MPs as $MP){
+    $contenu.="<div><li>silo numéro " . $MP['numéro_silo'] . "</li>";
+    $contenu.="<li>" . $MP['variété_matière_première'] . "</li>";
+    $contenu.="<li>" . $MP['quantité_en_kg'] . "</li>";
+    $contenu.="</div>";
+}
+$contenu.="</fieldset>";
+$contenu.="<fieldset><legend>affichage du contenu des silos de produits finis</legend>";
+foreach($PFs as $PF){
+    $contenu.="<div><li>silo numéro " . $PF['numéro_silo'] . "</li>";
+    $contenu.="<li>" . $PF['libellé_produit_fini'] . "</li>";
+    $contenu.="<li>" . $PF['quantité_en_kg_stockage2'] . "</li>";
+    $contenu.="</div>";
+}
+$contenu.="</fieldset>";
 
 
 require 'partials/enTete.php';

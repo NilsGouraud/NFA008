@@ -18,6 +18,7 @@
         <a class="<?=$passerUneCommandePourDesCereales?>" href="commandeF.php">passer une commande pour des céréales</a>
         <a class="<?=$recevoirUneCommandePourDesFlocons?>" href="commandeC.php">recevoir une commande pour des flocons</a>
         <a class="<?=$receptionnerUnLotDeCereales?>" href="reception.php">réceptionner un lot de  céréales</a>
+        <a class="<?=$pointerLeFloconnageDesCereales?>" href="floconnage.php">pointer le floconnage des céréales</a>
         <a class="<?=$ChargerUnLotDeFlocons?>" href="chargement.php">charger un lot de flocons</a>
         
     </nav>

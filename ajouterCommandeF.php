@@ -18,17 +18,18 @@ $connexion=new PDO($dsn);
 
 $passerUneCommandePourDesCereales="pageActuelle";
 $requete=$connexion->prepare('INSERT INTO '.$commandefournisseur.' VALUES('.$values.')');
-  $requete->execute(); 
-  $requete=$connexion->prepare('SELECT count(*) FROM fournisseur');
+$requete->execute(); 
+$requete=$connexion->prepare('SELECT count(*) FROM fournisseur');
 $requete->execute();
 $resultat=$requete->fetchAll();
-  $contenu="<h1>Vous avez ajouté la commande fournisseur suivante :</h1>";
-  $contenu.="<div><li>commande fournisseur numéro " .$resultat[0][0] . "</li>";
-    $contenu.="<li>" . $date . "</li>";
-    $contenu.="<li>fournisseur numéro " . $numero_fournisseur . "</li>";
-    $contenu.="<li>" . $cereale . "</li>";
-    $contenu.="<li>" . $quantite . "</li>";
-    $contenu.="</div>";
+  
+$contenu="<h1>Vous avez ajouté la commande fournisseur suivante :</h1>";
+$contenu.="<div><li>commande fournisseur numéro " .$resultat[0][0] . "</li>";
+$contenu.="<li>" . $date . "</li>";
+$contenu.="<li>fournisseur numéro " . $numero_fournisseur . "</li>";
+$contenu.="<li>" . $cereale . "</li>";
+$contenu.="<li>" . $quantite . "</li>";
+$contenu.="</div>";
 
 
 

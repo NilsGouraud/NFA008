@@ -11,7 +11,7 @@ $typeCereale=$_POST['cereale'];
 
 
 $silos=$connexion->prepare('SELECT * FROM stockageMatièresPremières WHERE variété_matière_première='.$typeCereale);
-
+$silos->execute();
 
 $contenu="<h2>réceptionner un lot de céréales</h2>";
 $receptionnerUnLotDeCereales="pageActuelle"; //l'onglet de la page sera affiché en surbrillance

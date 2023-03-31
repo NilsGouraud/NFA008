@@ -28,18 +28,18 @@ $connexion=new PDO($dsn);
 $ajouterUnClient="pageActuelle";
 $requete=$connexion->prepare('INSERT INTO '.$fournisseur.' VALUES('.$values.')');
 try{
-  $requete->execute(); 
-  $requete=$connexion->prepare('SELECT count(*) FROM fournisseur');
+$requete->execute(); 
+$requete=$connexion->prepare('SELECT count(*) FROM fournisseur');
 $requete->execute();
 $resultat=$requete->fetchAll();
-  $contenu="<h1>Vous avez ajouté le fournisseur suivant :</h1>";
-  $contenu.="<div><li>fournisseur numéro " .$resultat[0][0] . "</li>";
-    $contenu.="<li>" . $nom_fournisseur . "</li>";
-    $contenu.="<li>" . $numéro_de_rue_fournisseur . "</li>";
-    $contenu.="<li>" . $adresse_fournisseur . "</li>";
-    $contenu.="<li>" . $ville_fournisseur . "</li>";
-    $contenu.="<li>" . $code_postal_fournisseur . "</li>";
-    $contenu.="</div>";
+$contenu="<h1>Vous avez ajouté le fournisseur suivant :</h1>";
+$contenu.="<div><li>fournisseur numéro " .$resultat[0][0] . "</li>";
+$contenu.="<li>" . $nom_fournisseur . "</li>";
+$contenu.="<li>" . $numéro_de_rue_fournisseur . "</li>";
+$contenu.="<li>" . $adresse_fournisseur . "</li>";
+$contenu.="<li>" . $ville_fournisseur . "</li>";
+$contenu.="<li>" . $code_postal_fournisseur . "</li>";
+$contenu.="</div>";
 }
 catch(Exception $e) {
   $contenu= '<h1>Ajout impossible</h1> 
