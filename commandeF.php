@@ -18,7 +18,7 @@ $statement->execute();
 $cereales=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 
-$passerUneCommandePourDesCereale="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
+$passerUneCommandePourDesCereales="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 
 //début du formulaire
 $contenu="<h2>passer une commande à un fournisseur</h2>";
