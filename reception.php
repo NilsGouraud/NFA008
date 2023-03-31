@@ -7,7 +7,7 @@ $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset
 //connexion
 $connexion=new PDO($dsn);
 
-//on récupère les céréales dont peut avoir besoin pour produire les flocons
+//on récupère les céréales dont on peut avoir besoin pour produire les flocons
 $statement=$connexion->prepare("select * from matière_première");
 $statement->execute();
 $cereales=$statement->fetchAll(PDO::FETCH_ASSOC);
