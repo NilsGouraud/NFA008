@@ -27,7 +27,7 @@ $contenu.='<form method="POST" action="ajouterCommandeF.php">
 quel fournisseur avez-vous contacté?
 <select name="fournisseur">';
 foreach($fournisseurs as $fournisseur){
-    $contenu.=' <option value="'.$fournisseur['numéro_fournisseur'].'">'.$fournisseur['numéro_fournisseur'].'</option>';
+    $contenu.=' <option value="'.$fournisseur['numéro_fournisseur'].'">'.$fournisseur['nom_fournisseur'].'</option>';
 }
 $contenu.='</select>
 <br>
