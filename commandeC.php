@@ -27,7 +27,7 @@ $contenu.='<form method="POST" action="ajouterCommandeC.php">
 quel client comptez-vous livrer?
 <select name="client">';
 foreach($clients as $client){
-    $contenu.=' <option value="'.$client['numéro_client'].'">'.$client['numéro_client'].'</option>';
+    $contenu.=' <option value="'.$client['numéro_client'].'">'.$client['nom_client'].'</option>';
 }
 $contenu.='</select>
 <br>

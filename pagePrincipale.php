@@ -8,29 +8,29 @@ $dsn="mysql:host=localhost;port=3306;dbname=cereale;user=root;password=a;charset
 $connexion=new PDO($dsn);
 
 //récupération de la table client
-$statement=$connexion->prepare("select * from client");
-$statement->execute();
-$clients=$statement->fetchAll(PDO::FETCH_ASSOC);
+$requete=$connexion->prepare("select * from client");
+$requete->execute();
+$clients=$requete->fetchAll(PDO::FETCH_ASSOC);
 //récupération de la table fournisseur
-$statement=$connexion->prepare("select * from fournisseur");
-$statement->execute();
-$fournisseurs=$statement->fetchAll(PDO::FETCH_ASSOC);
+$requete=$connexion->prepare("select * from fournisseur");
+$requete->execute();
+$fournisseurs=$requete->fetchAll(PDO::FETCH_ASSOC);
 //récupération de la table commandeClient
-$statement=$connexion->prepare("select * from commandeClient");
-$statement->execute();
-$commandesClient=$statement->fetchAll(PDO::FETCH_ASSOC);
+$requete=$connexion->prepare("select * from commandeClient");
+$requete->execute();
+$commandesClient=$requete->fetchAll(PDO::FETCH_ASSOC);
 //récupération de la table commandeFournisseur
-$statement=$connexion->prepare("select * from commandeFournisseur");
-$statement->execute();
-$commandesFournisseur=$statement->fetchAll(PDO::FETCH_ASSOC);
+$requete=$connexion->prepare("select * from commandeFournisseur");
+$requete->execute();
+$commandesFournisseur=$requete->fetchAll(PDO::FETCH_ASSOC);
 //récupération de la table stockageMatièresPremières
-$statement=$connexion->prepare("select * from stockageMatièresPremières");
-$statement->execute();
-$MPs=$statement->fetchAll(PDO::FETCH_ASSOC);
+$requete=$connexion->prepare("select * from stockageMatièresPremières");
+$requete->execute();
+$MPs=$requete->fetchAll(PDO::FETCH_ASSOC);
 //récupération de la table stockageProduitsFinis
-$statement=$connexion->prepare("select * from stockageProduitsFinis");
-$statement->execute();
-$PFs=$statement->fetchAll(PDO::FETCH_ASSOC);
+$requete=$connexion->prepare("select * from stockageProduitsFinis");
+$requete->execute();
+$PFs=$requete->fetchAll(PDO::FETCH_ASSOC);
 $pagePrincipale="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 
 
@@ -63,7 +63,7 @@ foreach($commandesClient as $commandeClient){
     $contenu.="<li>" . $commandeClient['date_commandeClient'] . "</li>";
     $contenu.="<li>client numéro " . $commandeClient['numéro_client'] . "</li>";
     $contenu.="<li>" . $commandeClient['libellé_produit_fini'] . "</li>";
-    $contenu.="<li>" . $commandeClient['quantité'] . "</li>";
+    $contenu.="<li>" . $commandeClient['quantité'] . "t</li>";
     $contenu.="</div>";
 }
 $contenu.="</fieldset>";
@@ -73,7 +73,7 @@ foreach($commandesFournisseur as $commandeFournisseur){
     $contenu.="<li>" . $commandeFournisseur['date_commandeFournisseur'] . "</li>";
     $contenu.="<li>fournisseur numéro " . $commandeFournisseur['numéro_fournisseur'] . "</li>";
     $contenu.="<li>" . $commandeFournisseur['variété_matière_première'] . "</li>";
-    $contenu.="<li>" . $commandeFournisseur['quantité'] . "</li>";
+    $contenu.="<li>" . $commandeFournisseur['quantité'] . "t</li>";
     $contenu.="</div>";
 }
 $contenu.="</fieldset>";

@@ -13,7 +13,7 @@ $statement->execute();
 $cereales=$statement->fetchAll(PDO::FETCH_ASSOC);
 
 
-$contenu="<h2>réceptionner un lot de céréales</h2>";
+$contenu="<h2>floconner un lot de céréales</h2>";
 $pointerLeFloconnageDesCereales="pageActuelle"; //l'onglet de la page sera affiché en surbrillance
 $contenu.='<form method="POST" action="floconnage2.php">
 
